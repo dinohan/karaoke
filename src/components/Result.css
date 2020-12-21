@@ -1,3 +1,11 @@
 #result-title{
     margin: 20px 0px 10px 20px;
 }
+
+#result {
+
+    margin: 5px auto;
+    width: 95%;
+    min-width: 340px;
+    max-width: 450px;
+}

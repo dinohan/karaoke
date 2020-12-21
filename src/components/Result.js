@@ -51,7 +51,7 @@ class Result extends React.Component {
         }
 
         return (
-            <div>
+            <div id="result">
                 <h2 id="result-title">'{keyword}' 검색결과</h2>
                 {
                     songs.map((song, index) => {
