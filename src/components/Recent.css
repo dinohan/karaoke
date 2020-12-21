@@ -1,0 +1,25 @@
+.brand {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.recent {
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 10px;
+
+    width: 95%;
+    min-width: 340px;
+    max-width: 450px;
+
+    border-radius: 15px;
+    background-color:#101627;
+
+    padding:5px;
+    padding-top: 20px;
+
+    
+
+    display: block;
+}

@@ -1,0 +1,30 @@
+.buttons {
+    border: solid 1px white;
+    border-radius: 5px;
+    margin: 5px auto;
+    width: 95%;
+    min-width: 340px;
+    max-width: 450px;
+}
+.button{
+    width: 50%;
+    height: 25px;
+    border: 0;
+    outline: 0;
+    color: white;
+    background-color: transparent;
+}
+
+.right {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.left {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.selected {
+    background-color: white;
+    color: black;
+}

@@ -1,0 +1,40 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+body{
+    font-family: 'Spoqa Han Sans Neo', sans-serif;
+    color: white;
+    background-color: #232839;
+}
+
+input {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+ }
+
+#home {
+    margin-top: 10px;
+    text-align: center;
+
+    font-size: 30px;
+    font-weight: 900;
+}
+/* a:link {
+    color: white;
+    text-decoration: none;;
+}
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+a:hover {
+    color: white;
+    text-decoration: none; 
+}*/
+
+/*  */

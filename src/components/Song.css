@@ -1,0 +1,66 @@
+
+
+div {
+    position: relative;
+}
+
+.song {
+    min-width: 340px;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 8px 4px;
+
+    border-top: 1px solid white;
+    border-color: #C6C6C6;
+    width: 90%;
+    border-width: 90%;
+}
+
+.song-upper {
+}
+
+.song-upper > div {
+    display: inline-block;
+    padding: 5px 5px 0px 5px;
+}
+
+
+.song-title {
+    width: auto;
+    max-width: 70%;
+    font-weight: 500;
+    margin-bottom: 0px;
+
+    margin-left:5px;
+
+    white-space: nowrap;
+    overflow: auto;
+}
+
+.song-no {
+    float: right;
+    text-align: right;
+}
+
+
+.song-lower {
+}
+
+.song-lower > div {
+    display: inline-block;
+    padding: 5px;
+}
+
+.song-singer {
+    width: auto;
+    max-width: 70%;
+    font-weight: 200;
+    font-size: 14px;
+
+    margin-top: 0px;
+    left:26px;
+
+
+    white-space: nowrap;
+    overflow: auto;
+}

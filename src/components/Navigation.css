@@ -1,0 +1,57 @@
+.nav {
+    z-index: 1;
+    height: 50px;
+    background-color: #121521;
+    padding: 10px 20px;
+}
+  
+  
+.nav a {
+    text-decoration: none;
+    color: #0008fc;
+    text-transform: uppercase;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.nav > a:link {
+    color: white;
+    text-decoration: none;;
+}
+.nav > a:visited {
+    color: white;
+    text-decoration: none;
+}
+.nav > a:hover {
+    color: white;
+    text-decoration: none; 
+}
+
+#home-button {
+    position: absolute; 
+    top: 50%;
+    left: 50%; 
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#search-box {
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 10px;
+
+    width: 95%;
+    min-width: 340px;
+    max-width: 450px;
+    height: 40px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    font-size: 16px;
+
+    border-radius: 7px;
+
+    display: table;
+    margin: 10px auto;
+}
