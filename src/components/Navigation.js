@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useParams, useHistory, useLocation } from 'react-router';
+import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
 import "./Navigation.css";
 
-function Navigation({ state, updateKeyword }) {
+function Navigation({ state, changeKeyword, getSearchSongs }) {
     const history = useHistory();
 
-    const [text, setText] = useState(state.text);
+    const [text, setText] = useState(state.keyword);
 
     function onChange(e) {
         setText(e.target.value);
@@ -16,8 +16,7 @@ function Navigation({ state, updateKeyword }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        updateKeyword(text);
-        console.log(state);
+        changeKeyword(text);
         const search = `key=${text}&brand=${(state.brandFilter === 0) ? 'tj' : 'ky'}&type=${state.typeFilter === 0 ? 'song' : 'singer'}`;
         history.push({
             pathname: 'search',
@@ -30,14 +29,18 @@ function Navigation({ state, updateKeyword }) {
                 <Link id="home-button" to="/">노래방 검색</Link>
             </div>
             <div>
-                <form onSubmit={handleSubmit}>
+                <form
+                    id="search-box"
+                    onSubmit={handleSubmit}
+                >
                     <input
-                        id="search-box"
+                        id="search-text"
                         type="search"
                         placeholder="검색어를 입력하세요"
+                        value={text}
                         onChange={onChange}
                     />
-                    <button>검색</button>
+                    <button id="search-button">검색</button>
                 </form>
             </div>
         </div>
@@ -50,7 +53,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        updateKeyword: (text) => dispatch(actionCreators.updateKeyword(text))
+        changeKeyword: (text) => dispatch(actionCreators.changeKeyword(text))
     };
 }
 

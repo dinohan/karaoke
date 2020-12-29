@@ -12,6 +12,7 @@ div {
 
     width: 90%;
     border-width: 90%;
+    border-bottom: 1px solid #AAAAAA;
 }
 
 .song-upper {

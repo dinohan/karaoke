@@ -12,10 +12,6 @@ body{
     background-color: #232839;
 }
 
-input {
-    -webkit-appearance: none;
-    -webkit-border-radius: 0;
- }
 
 #home {
     margin-top: 10px;

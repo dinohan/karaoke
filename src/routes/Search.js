@@ -1,67 +1,36 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string'
+import { connect } from 'react-redux';
+
+import { actionCreators } from '../actions';
 import Selector from '../components/Selector';
-import './Search.css';
 import Result from '../components/Result';
+import './Search.css';
 
-class Search extends React.Component {
-
-    async getSongs(keyword, brand, type) {
-        const link = 'https://api.manana.kr/karaoke/' +
-            (type === 'song' ? 'song' : 'singer') + '/' +
-            keyword + '.json?brand=' +
-            (brand === 'tj' ? 'tj' : 'kumyoung');
-        const { data } = await axios.get(link);
-        return data;
-    }
-
-    render() {
-        const search = this.props.location.search;
-        const params = new URLSearchParams(search);
-        const key = params.get('key');
-        const brand = params.get('brand');
-        const type = params.get('type');
-
-        return (<div>
-            <Selector
-                choices={['tj', 'ky']}
-                selected={
-                    brand === 'tj' ? 0 : 1
-                }
-            />
-            <Selector
-                choices={['song', 'singer']}
-                selected={
-                    type === 'song' ? 0 : 1
-                }
-            />
-            <div>
-                <Result
-                    keyword={key}
-                    brand={brand}
-                    type={type}
-                />
-            </div>
-        </div>)
-    }
-}
-/* 
-function SearchList({ keyword, songs }) {
-    return (<div id='search_result' >
-        <h2 id='info'>'{keyword}' 검색결과</h2>
-        <div>
-            {
-                songs.map((song, index) => {
-                    return <Song
-                        key={song.no}
-                        no={song.no}
-                        song={song.song}
-                        idx={index}
-                    />
-                })
-            }
-        </div>
+function Search({ changeKeyword, changeBrandFilter, changeTypeFilter }) {
+    const location = useLocation();
+    const searchURI = decodeURI(location.search);
+    const query = queryString.parse(searchURI);
+    useEffect(() => {
+        console.log(query);
+        changeKeyword(query.key);
+        changeBrandFilter(query.brand === 'ky' ? 1 : 0)
+        changeTypeFilter(query.type === 'singer' ? 1 : 0)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    return (<div>
+        <Selector />
+        <Result />
     </div>)
-} */
+}
 
-export default Search;
+function mapDispatchToProps(dispatch) {
+    return {
+        changeKeyword: (text) => dispatch(actionCreators.changeKeyword(text)),
+        changeBrandFilter: (id) => dispatch(actionCreators.changeBrandFilter(id)),
+        changeTypeFilter: (id) => dispatch(actionCreators.changeTypeFilter(id))
+    };
+}
+
+export default connect(null, mapDispatchToProps)(Search);

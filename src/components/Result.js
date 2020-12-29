@@ -1,12 +1,57 @@
-import React from 'react';
-import axios from 'axios';
-// eslint-disable-next-line
-import PropTypes from 'prop-types';
-// eslint-disable-next-line
-import { Link, withRouter } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 import Song from '../components/Song';
 import './Result.css';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
+function Result({ state }) {
+    const [songs, setSongs] = useState([]);
+
+    useEffect(() => {
+        async function getSongs() {
+            let link = 'https://api.manana.kr/karaoke/' +
+                (state.typeFilter === 0 ? 'song' : 'singer') + '/' +
+                state.keyword + '.json?brand=' +
+                (state.brandFilter === 0 ? 'tj' : 'kumyoung');
+            let { data } = await axios.get(link);
+            setSongs(data);
+        }
+        if (state.keyword)
+            getSongs();
+    }, [state.keyword, state.brandFilter, state.typeFilter]);
+
+    return (
+        <div id="result">
+            {
+                state.keyword ? <div>
+                    <h2 id="result-title">'{state.keyword}' 검색결과</h2>
+                    {
+                        songs.map((song, index) => {
+                            return <Song
+                                key={song.no}
+                                no={song.no}
+                                title={song.title}
+                                singer={song.singer}
+                                idx={index}
+                            />
+                        })
+                    }
+                </div> : <div>
+                        <h2 id="result-title">검색어를 입력해주세요</h2>
+                    </div>
+            }
+        </div>);
+}
+
+function mapStateToProps(state) {
+    return {
+        state
+    }
+}
+
+export default connect(mapStateToProps)(Result)
+
+/*
 class Result extends React.Component {
     state = {
         songs: [],
@@ -63,3 +108,4 @@ class Result extends React.Component {
 }
 
 export default Result;
+*/

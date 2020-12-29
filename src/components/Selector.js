@@ -1,7 +1,85 @@
 import React from 'react';
-import { Link, withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router';
+import { actionCreators } from '../actions';
 import './Selector.css'
 
+function Selector({ state, changeBrandFilter, changeTypeFilter }) {
+
+    const history = useHistory();
+
+    function updateHistory(keyword, brand, type) {
+        const search = `key=${keyword}&brand=${(brand === 0) ? 'tj' : 'ky'}&type=${type === 0 ? 'song' : 'singer'}`;
+        history.push({
+            pathname: 'search',
+            search
+        });
+    }
+
+    function selectTJ() {
+        changeBrandFilter(0);
+        updateHistory(state.keyword, 0, state.typeFilter);
+    }
+    function selectKY() {
+        changeBrandFilter(1);
+        updateHistory(state.keyword, 1, state.typeFilter);
+    }
+    function selectSong() {
+        changeTypeFilter(0);
+        updateHistory(state.keyword, state.brandFilter, 0);
+    }
+    function selectSinger() {
+        changeTypeFilter(1);
+        updateHistory(state.keyword, state.brandFilter, 1);
+    }
+
+    const { brandFilter, typeFilter } = state;
+    return (<>
+        <div>
+            <div className="buttons" >
+                <button
+                    onClick={selectTJ}
+                    className={"button left " + (brandFilter === 0 ? "selected" : "")}>
+                    TJ
+                </button>
+                <button
+                    onClick={selectKY}
+                    className={"button right " + (brandFilter === 1 ? "selected" : "")}>
+                    KY
+                </button>
+            </div>
+        </div >
+        <div>
+            <div className="buttons" >
+                <button
+                    onClick={selectSong}
+                    className={"button left " + (typeFilter === 0 ? "selected" : "")}>
+                    곡명
+                </button>
+                <button
+                    onClick={selectSinger}
+                    className={"button right " + (typeFilter === 1 ? "selected" : "")}>
+                    가수명
+                </button>
+            </div>
+        </div >
+    </>)
+}
+
+function mapStateToProps(state) {
+    return { state }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        changeBrandFilter: (id) => dispatch(actionCreators.changeBrandFilter(id)),
+        changeTypeFilter: (id) => dispatch(actionCreators.changeTypeFilter(id))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Selector);
+
+/*
 class Selector extends React.Component {
 
     redirect = (flag) => {
@@ -80,3 +158,5 @@ class Selector extends React.Component {
 }
 
 export default withRouter(Selector);
+
+*/
