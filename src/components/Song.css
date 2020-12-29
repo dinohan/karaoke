@@ -12,7 +12,7 @@ div {
 
     width: 90%;
     border-width: 90%;
-    border-bottom: 1px solid #AAAAAA;
+    border-top: 1px solid #AAAAAA;
 }
 /* 
 .song-upper {
@@ -30,7 +30,7 @@ div {
     font-weight: 500;
     margin-bottom: 0px;
 
-    margin-left:5px;
+    margin-left: 30px;
 
     white-space: nowrap;
     overflow: auto;
@@ -57,9 +57,15 @@ div {
     font-size: 14px;
 
     margin-top: 0px;
-    left:26px;
+    margin-left: 10px;
+    left: 30px;
 
 
     white-space: nowrap;
     overflow: auto;
+}
+
+.fav-button {
+    position: absolute;
+    top: -100%;
 }

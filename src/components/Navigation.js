@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
+
 import { actionCreators } from '../actions';
 import "./Navigation.css";
 
-function Navigation({ state, changeKeyword, getSearchSongs }) {
+import { AiFillHome, AiFillStar } from 'react-icons/ai';
+
+function Navigation({ state, changeKeyword }) {
 
     const [text, setText] = useState(state.keyword);
 
@@ -26,8 +29,16 @@ function Navigation({ state, changeKeyword, getSearchSongs }) {
     return (
         <div>
             <div className="nav">
-                <Link id="home-button" to="/">노래방 검색</Link>
-                <Link id="favorite-button" to="/favorite">즐겨찾기</Link>
+                <Link id="home-button" to="/">
+                    <AiFillHome
+                        size='1.5em'
+                    />
+                </Link>
+                <Link id="favorite-button" to="/favorite">
+                    <AiFillStar
+                        size='1.5em'
+                    />
+                </Link>
             </div>
             <div id="placehold"></div>
             <div>

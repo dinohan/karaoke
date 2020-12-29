@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
 import './Song.css';
 
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+
 function Song({ song, favSongs, addFavoriteSong, deleteFavoriteSong }) {
     function isFavorite() {
         for (let favSong of favSongs) {
@@ -27,7 +29,19 @@ function Song({ song, favSongs, addFavoriteSong, deleteFavoriteSong }) {
     return (<div className='song'>
         <div className='song-upper'>
             <div className='song-index'>
-                <button onClick={handleClick}>{isFavorite() ? '-' : '+'}</button>
+                {isFavorite() ? (
+                    <AiFillStar
+                        onClick={handleClick}
+                        size='1.8em'
+                        className='fav-button'
+                    />
+                ) : (
+                        <AiOutlineStar
+                            onClick={handleClick}
+                            size='1.8em'
+                            className='fav-button'
+                        />
+                    )}
             </div>
             <div className='song-title'>
                 {song.title}
