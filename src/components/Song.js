@@ -5,7 +5,15 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
 import './Song.css';
 
-function Song({ song, page, favSongs, addFavoriteSong, deleteFavoriteSong }) {
+function Song({ song, favSongs, addFavoriteSong, deleteFavoriteSong }) {
+    function isFavorite() {
+        for (let favSong of favSongs) {
+            if (favSong.no === song.no)
+                return true;
+        }
+        return false;
+    }
+
     function handleClick() {
         if (isFavorite()) {
             const message = `'${song.title}'을(를) 북마크에서 삭제할까요?`;
@@ -14,14 +22,6 @@ function Song({ song, page, favSongs, addFavoriteSong, deleteFavoriteSong }) {
         }
         else
             addFavoriteSong(song);
-    }
-
-    function isFavorite() {
-        for (let favSong of favSongs) {
-            if (favSong.no === song.no)
-                return true;
-        }
-        return false;
     }
 
     return (<div className='song'>
@@ -47,7 +47,7 @@ function Song({ song, page, favSongs, addFavoriteSong, deleteFavoriteSong }) {
 }
 
 Song.propTypes = {
-    page: PropTypes.string
+    song: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {

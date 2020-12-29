@@ -10,7 +10,6 @@ function Favorite({ state, deleteFavoriteSong }) {
             return <Song
                 key={song.no}
                 song={song}
-                page='favorite'
             />
         })}
     </div>)
