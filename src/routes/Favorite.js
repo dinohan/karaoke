@@ -12,6 +12,7 @@ function Favorite({ state, deleteFavoriteSong }) {
                 no={song.no}
                 title={song.title}
                 singer={song.singer}
+                page='favorite'
             />
         })}
     </div>)

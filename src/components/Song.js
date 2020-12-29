@@ -5,14 +5,17 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
 import './Song.css';
 
-function Song({ idx, no, title, singer, addFavoriteSong }) {
+function Song({ no, title, singer, page, addFavoriteSong, deleteFavoriteSong }) {
     function handleClick() {
         const song = {
             no,
             title,
             singer
         }
-        addFavoriteSong(song);
+        if (page === 'favorite')
+            deleteFavoriteSong(song.no);
+        else
+            addFavoriteSong(song);
     }
 
     return (<div className='song'>
@@ -45,7 +48,8 @@ Song.propTypes = {
 
 function mapDispatchToProps(dispatch) {
     return {
-        addFavoriteSong: (text) => dispatch(actionCreators.addFavoriteSong(text))
+        addFavoriteSong: (text) => dispatch(actionCreators.addFavoriteSong(text)),
+        deleteFavoriteSong: (text) => dispatch(actionCreators.deleteFavoriteSong(text))
     };
 }
 
