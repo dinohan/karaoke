@@ -26,13 +26,10 @@ function Result({ state }) {
                 state.keyword ? <div>
                     <h2 id="result-title">'{state.keyword}' 검색결과</h2>
                     {
-                        songs.map((song, index) => {
+                        songs.map((song) => {
                             return <Song
                                 key={song.no}
-                                no={song.no}
-                                title={song.title}
-                                singer={song.singer}
-                                idx={index}
+                                song={song}
                             />
                         })
                     }

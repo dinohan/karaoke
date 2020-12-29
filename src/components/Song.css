@@ -14,9 +14,9 @@ div {
     border-width: 90%;
     border-bottom: 1px solid #AAAAAA;
 }
-
+/* 
 .song-upper {
-}
+} */
 
 .song-upper > div {
     display: inline-block;
@@ -42,8 +42,8 @@ div {
 }
 
 
-.song-lower {
-}
+/* .song-lower {
+} */
 
 .song-lower > div {
     display: inline-block;

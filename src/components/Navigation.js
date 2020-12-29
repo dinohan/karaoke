@@ -9,7 +9,6 @@ function Navigation({ state, changeKeyword, getSearchSongs }) {
 
     const [text, setText] = useState(state.keyword);
 
-    console.log(state.favSongs);
     function onChange(e) {
         setText(e.target.value);
     }
@@ -28,8 +27,9 @@ function Navigation({ state, changeKeyword, getSearchSongs }) {
         <div>
             <div className="nav">
                 <Link id="home-button" to="/">노래방 검색</Link>
-                <Link to="/favorite">북마크</Link>
+                <Link id="favorite-button" to="/favorite">즐겨찾기</Link>
             </div>
+            <div id="placehold"></div>
             <div>
                 <form
                     id="search-box"

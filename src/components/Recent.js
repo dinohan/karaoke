@@ -7,13 +7,10 @@ function Recent({ songs, brand }) {
     return <div className='recent'>
         <h2 className='brand'>{brand} 최신곡</h2>
         {
-            songs.map((song, index) => {
+            songs.map((song) => {
                 return <Song
                     key={song.no}
-                    no={song.no}
-                    title={song.title}
-                    singer={song.singer}
-                    idx={index}
+                    song={song}
                 />
             })
         }
