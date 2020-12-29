@@ -3,6 +3,7 @@ import { useLocation } from 'react-router';
 import queryString from 'query-string'
 import { connect } from 'react-redux';
 
+import { actionCreators } from '../actions'
 import Selector from '../components/Selector';
 import Result from '../components/Result';
 import './Search.css';
@@ -12,7 +13,6 @@ function Search({ changeKeyword, changeBrandFilter, changeTypeFilter }) {
     const searchURI = decodeURI(location.search);
     const query = queryString.parse(searchURI);
     useEffect(() => {
-        console.log('hi');
         changeKeyword(query.key);
         changeBrandFilter(query.brand === 'ky' ? 1 : 0)
         changeTypeFilter(query.type === 'singer' ? 1 : 0)

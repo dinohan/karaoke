@@ -1,4 +1,11 @@
-import { SEARCH, BRAND_FILTER, SONG_FILTER, ADD_FAV, DEL_FAV } from '../actions/ActionTypes';
+import {
+    SEARCH,
+    BRAND_FILTER,
+    SONG_FILTER,
+    ADD_FAV,
+    DEL_FAV,
+    INIT_STATE
+} from '../actions/ActionTypes';
 
 const initialState = {
     keyword: '',
@@ -26,6 +33,8 @@ const reducer = (state = initialState, action) => {
                     song.no !== action.payload
                 )
             }
+        case INIT_STATE:
+            return { ...action.payload }
         default:
             return state;
     }

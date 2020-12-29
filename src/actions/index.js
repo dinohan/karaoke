@@ -1,4 +1,18 @@
-import { SEARCH, BRAND_FILTER, SONG_FILTER, ADD_FAV, DEL_FAV } from './ActionTypes';
+import {
+    SEARCH,
+    BRAND_FILTER,
+    SONG_FILTER,
+    ADD_FAV,
+    DEL_FAV,
+    INIT_STATE
+} from './ActionTypes';
+
+const initState = (localState) => {
+    return {
+        type: INIT_STATE,
+        payload: localState
+    }
+}
 
 const changeKeyword = (text) => {
     return {
@@ -37,5 +51,6 @@ export const actionCreators = {
     changeBrandFilter,
     changeTypeFilter,
     addFavoriteSong,
-    deleteFavoriteSong
+    deleteFavoriteSong,
+    initState
 }
