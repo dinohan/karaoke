@@ -5,34 +5,40 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
 import './Song.css';
 
-function Song({ no, title, singer, page, addFavoriteSong, deleteFavoriteSong }) {
+function Song({ song, page, favSongs, addFavoriteSong, deleteFavoriteSong }) {
     function handleClick() {
-        const song = {
-            no,
-            title,
-            singer
+        if (isFavorite()) {
+            const message = `'${song.title}'을(를) 북마크에서 삭제할까요?`;
+            if (window.confirm(message))
+                deleteFavoriteSong(song.no);
         }
-        if (page === 'favorite')
-            deleteFavoriteSong(song.no);
         else
             addFavoriteSong(song);
+    }
+
+    function isFavorite() {
+        for (let favSong of favSongs) {
+            if (favSong.no === song.no)
+                return true;
+        }
+        return false;
     }
 
     return (<div className='song'>
         <div className='song-upper'>
             <div className='song-index'>
-                <button onClick={handleClick}>+</button>
+                <button onClick={handleClick}>{isFavorite() ? '-' : '+'}</button>
             </div>
             <div className='song-title'>
-                {title}
+                {song.title}
             </div>
             <div className='song-no'>
-                {no}
+                {song.no}
             </div>
         </div>
         <div className='song-lower'>
             <div className='song-singer'>
-                {singer}
+                {song.singer}
             </div>
             <div className='song-no'>
             </div>
@@ -41,9 +47,11 @@ function Song({ no, title, singer, page, addFavoriteSong, deleteFavoriteSong }) 
 }
 
 Song.propTypes = {
-    idx: PropTypes.number.isRequired,
-    no: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
+    page: PropTypes.string
+}
+
+function mapStateToProps(state) {
+    return { favSongs: state.favSongs }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -53,4 +61,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(null, mapDispatchToProps)(Song);
+export default connect(mapStateToProps, mapDispatchToProps)(Song);

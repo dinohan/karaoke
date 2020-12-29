@@ -9,9 +9,7 @@ function Favorite({ state, deleteFavoriteSong }) {
         {state.favSongs.map(song => {
             return <Song
                 key={song.no}
-                no={song.no}
-                title={song.title}
-                singer={song.singer}
+                song={song}
                 page='favorite'
             />
         })}

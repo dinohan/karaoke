@@ -29,10 +29,7 @@ function Result({ state }) {
                         songs.map((song, index) => {
                             return <Song
                                 key={song.no}
-                                no={song.no}
-                                title={song.title}
-                                singer={song.singer}
-                                idx={index}
+                                song={song}
                             />
                         })
                     }
