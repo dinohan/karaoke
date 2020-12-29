@@ -6,14 +6,15 @@ import { actionCreators } from '../actions';
 import "./Navigation.css";
 
 function Navigation({ state, changeKeyword, getSearchSongs }) {
-    const history = useHistory();
 
     const [text, setText] = useState(state.keyword);
 
+    console.log(state.favSongs);
     function onChange(e) {
         setText(e.target.value);
     }
 
+    const history = useHistory();
     function handleSubmit(e) {
         e.preventDefault();
         changeKeyword(text);
@@ -27,6 +28,7 @@ function Navigation({ state, changeKeyword, getSearchSongs }) {
         <div>
             <div className="nav">
                 <Link id="home-button" to="/">노래방 검색</Link>
+                <Link to="/favorite">북마크</Link>
             </div>
             <div>
                 <form

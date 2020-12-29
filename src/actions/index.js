@@ -1,4 +1,4 @@
-import { SEARCH, BRAND_FILTER, SONG_FILTER } from './ActionTypes';
+import { SEARCH, BRAND_FILTER, SONG_FILTER, ADD_FAV, DEL_FAV } from './ActionTypes';
 
 const changeKeyword = (text) => {
     return {
@@ -19,54 +19,23 @@ const changeTypeFilter = (id) => {
     }
 }
 
-/*
-const getSearchSongs = (keyword) => async dispatch => {
-    let songs = [[[], []], [[], []]];
-
-    let brand = 0;
-    let type = 0;
-    let link = 'https://api.manana.kr/karaoke/' +
-        (type === 0 ? 'song' : 'singer') + '/' +
-        keyword + '.json?brand=' +
-        (brand === 0 ? 'tj' : 'kumyoung');
-    const { data00 } = await axios.get(link);
-    songs[0][0] = data00;
-
-    type = 1;
-    link = 'https://api.manana.kr/karaoke/' +
-        (type === 0 ? 'song' : 'singer') + '/' +
-        keyword + '.json?brand=' +
-        (brand === 0 ? 'tj' : 'kumyoung');
-    const { data01 } = await axios.get(link);
-    songs[0][1] = data01;
-
-    brand = 1;
-    type = 0;
-    link = 'https://api.manana.kr/karaoke/' +
-        (type === 0 ? 'song' : 'singer') + '/' +
-        keyword + '.json?brand=' +
-        (brand === 0 ? 'tj' : 'kumyoung');
-    const { data10 } = await axios.get(link);
-    songs[1][0] = data10;
-
-    type = 1;
-    link = 'https://api.manana.kr/karaoke/' +
-        (type === 0 ? 'song' : 'singer') + '/' +
-        keyword + '.json?brand=' +
-        (brand === 0 ? 'tj' : 'kumyoung');
-    const { data11 } = await axios.get(link);
-    songs[1][1] = data11;
-
-
-    //... 곡 가져오기
+const addFavoriteSong = (song) => {
     return {
-        type: GET_SONGS,
-        songs
+        type: ADD_FAV,
+        payload: song
     }
 }
-*/
+const deleteFavoriteSong = (songNo) => {
+    return {
+        type: DEL_FAV,
+        payload: songNo
+    }
+}
+
 export const actionCreators = {
     changeKeyword,
     changeBrandFilter,
-    changeTypeFilter
+    changeTypeFilter,
+    addFavoriteSong,
+    deleteFavoriteSong
 }

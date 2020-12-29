@@ -13,7 +13,6 @@ function Search({ changeKeyword, changeBrandFilter, changeTypeFilter }) {
     const searchURI = decodeURI(location.search);
     const query = queryString.parse(searchURI);
     useEffect(() => {
-        console.log(query);
         changeKeyword(query.key);
         changeBrandFilter(query.brand === 'ky' ? 1 : 0)
         changeTypeFilter(query.type === 'singer' ? 1 : 0)

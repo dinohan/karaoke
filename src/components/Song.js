@@ -1,14 +1,24 @@
 import React from 'react';
-// eslint-disable-next-line
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { actionCreators } from '../actions';
 import './Song.css';
 
-function Song({ idx, brand, no, title, singer, composer, lyricist, release }) {
+function Song({ idx, no, title, singer, addFavoriteSong }) {
+    function handleClick() {
+        const song = {
+            no,
+            title,
+            singer
+        }
+        addFavoriteSong(song);
+    }
 
     return (<div className='song'>
         <div className='song-upper'>
             <div className='song-index'>
-                {idx + 1}
+                <button onClick={handleClick}>+</button>
             </div>
             <div className='song-title'>
                 {title}
@@ -33,4 +43,10 @@ Song.propTypes = {
     title: PropTypes.string.isRequired
 }
 
-export default Song;
+function mapDispatchToProps(dispatch) {
+    return {
+        addFavoriteSong: (text) => dispatch(actionCreators.addFavoriteSong(text))
+    };
+}
+
+export default connect(null, mapDispatchToProps)(Song);
