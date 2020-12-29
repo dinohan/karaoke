@@ -1,7 +1,62 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useParams, useHistory, useLocation } from 'react-router';
+import { connect } from 'react-redux';
+import { actionCreators } from '../actions';
 import "./Navigation.css";
 
+function Navigation({ state, updateKeyword }) {
+    const history = useHistory();
+
+    const [text, setText] = useState(state.text);
+
+    function onChange(e) {
+        setText(e.target.value);
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        updateKeyword(text);
+        console.log(state);
+        const search = `key=${text}&brand=${(state.brandFilter === 0) ? 'tj' : 'ky'}&type=${state.typeFilter === 0 ? 'song' : 'singer'}`;
+        history.push({
+            pathname: 'search',
+            search
+        });
+    }
+    return (
+        <div>
+            <div className="nav">
+                <Link id="home-button" to="/">노래방 검색</Link>
+            </div>
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        id="search-box"
+                        type="search"
+                        placeholder="검색어를 입력하세요"
+                        onChange={onChange}
+                    />
+                    <button>검색</button>
+                </form>
+            </div>
+        </div>
+    );
+}
+
+function mapStateToProps(state) {
+    return { state: state }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        updateKeyword: (text) => dispatch(actionCreators.updateKeyword(text))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
+
+/*
 class Navigation extends React.Component {
     state = {
         path: '/home',
@@ -28,12 +83,14 @@ class Navigation extends React.Component {
                     <Link id="home-button" to="/">노래방 검색</Link>
                 </div>
                 <div>
-                    <input
-                        id="search-box"
-                        type="search"
-                        placeholder="검색어를 입력하세요"
-                        onKeyPress={this.handleSubmit}
-                    />
+                    <form onSubmit={onSubmit}>
+                        <input
+                            id="search-box"
+                            type="search"
+                            placeholder="검색어를 입력하세요"
+                        />
+                        <button>검색</button>
+                    </form>
                 </div>
             </div>
         );
@@ -41,3 +98,5 @@ class Navigation extends React.Component {
 }
 
 export default withRouter(Navigation);
+
+*/

@@ -25,24 +25,17 @@ class Result extends React.Component {
     }
 
     componentDidMount() {
-        console.log('mount')
         const { keyword, brand, type } = this.props;
         this.setState({})
         this.getSongs(keyword, brand, type);
     }
 
     componentDidUpdate() {
-        console.log('update')
     }
 
     render() {
         const { keyword, brand, type } = this.props;
         const { songs } = this.state;
-        /* 
-        console.log('props')
-        console.log(this.props)
-        console.log('state')
-        console.log(this.state) */
 
         if (this.props.brand !== this.state.brand ||
             this.props.type !== this.state.type ||
