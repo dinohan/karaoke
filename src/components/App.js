@@ -13,11 +13,11 @@ function App({ state, initState }) {
 
   useEffect(() => {
     const localState = localStorage.getItem('state');
-    const parsedState = JSON.parse(localState);
-    console.log(parsedState);
-    /* if (parsedState) {
+    console.log(localState);
+    if (localState) {
+      const parsedState = JSON.parse(localState);
       initState(parsedState);
-    } */
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps	
   }, []);
 
