@@ -1,0 +1,10 @@
+#favorite-title {
+    margin: 20px 0px 15px 20px;
+}
+
+#favorites {
+    margin: 5px auto;
+    width: 95%;
+    min-width: 340px;
+    max-width: 450px;
+}

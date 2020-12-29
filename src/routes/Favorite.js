@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 
 import { actionCreators } from '../actions';
 import Song from '../components/Song';
+import './Favorite.css';
 
 function Favorite({ state, deleteFavoriteSong }) {
-    return (<div>
+    return (<div id="favorites">
+        <h1 id="favorite-title">즐겨찾기</h1>
         {state.favSongs.map(song => {
             return <Song
                 key={song.no}

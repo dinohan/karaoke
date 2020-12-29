@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../actions'
 import Selector from '../components/Selector';
 import Result from '../components/Result';
-import './Search.css';
 
 function Search({ changeKeyword, changeBrandFilter, changeTypeFilter }) {
     const location = useLocation();
