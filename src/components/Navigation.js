@@ -17,10 +17,9 @@ function Navigation({ state, changeKeyword, getSearchSongs }) {
     function handleSubmit(e) {
         e.preventDefault();
         changeKeyword(text);
-        const search = `key=${text}&brand=${(state.brandFilter === 0) ? 'tj' : 'ky'}&type=${state.typeFilter === 0 ? 'song' : 'singer'}`;
+        //const search = `key=${text}&brand=${(state.brandFilter === 0) ? 'tj' : 'ky'}&type=${state.typeFilter === 0 ? 'song' : 'singer'}`;
         history.push({
-            pathname: 'search',
-            search
+            pathname: 'search'
         });
     }
     return (

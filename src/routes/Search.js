@@ -3,7 +3,6 @@ import { useLocation } from 'react-router';
 import queryString from 'query-string'
 import { connect } from 'react-redux';
 
-import { actionCreators } from '../actions';
 import Selector from '../components/Selector';
 import Result from '../components/Result';
 import './Search.css';
@@ -24,7 +23,6 @@ function Search({ changeKeyword, changeBrandFilter, changeTypeFilter }) {
         <Result />
     </div>)
 }
-
 
 function mapDispatchToProps(dispatch) {
     return {
