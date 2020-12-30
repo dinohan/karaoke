@@ -23,6 +23,21 @@ div {
     padding: 5px 5px 0px 5px;
 }
 
+/* 스크롤바 숨기기 */
+.song-title {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.song-title::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+.song-singer {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.song-singer::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
 
 .song-title {
     width: auto;

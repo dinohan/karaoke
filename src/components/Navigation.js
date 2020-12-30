@@ -26,10 +26,16 @@ function Navigation({ state, changeKeyword }) {
             search
         });
     }
+    function clickHome() {
+        console.log(history.location.pathname);
+        if (history.location.pathname)
+            window.scrollTo(0, 0);
+    }
+
     return (
         <div>
             <div className="nav">
-                <Link id="home-button" to="/">
+                <Link id="home-button" to="/" onClick={clickHome}>
                     <AiFillHome
                         size='1.5em'
                     />
