@@ -13,7 +13,6 @@ function App({ state, initState }) {
 
   useEffect(() => {
     const localState = localStorage.getItem('state');
-    console.log(localState);
     if (localState) {
       const parsedState = JSON.parse(localState);
       initState(parsedState);

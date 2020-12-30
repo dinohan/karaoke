@@ -7,44 +7,14 @@ import {
     INIT_STATE
 } from './ActionTypes';
 
-const initState = (localState) => {
-    return {
-        type: INIT_STATE,
-        payload: localState
-    }
-}
+import { createAction } from '@reduxjs/toolkit';
 
-const changeKeyword = (text) => {
-    return {
-        type: SEARCH,
-        payload: text
-    }
-}
-const changeBrandFilter = (id) => {
-    return {
-        type: BRAND_FILTER,
-        payload: id
-    }
-}
-const changeTypeFilter = (id) => {
-    return {
-        type: SONG_FILTER,
-        payload: id
-    }
-}
-
-const addFavoriteSong = (song) => {
-    return {
-        type: ADD_FAV,
-        payload: song
-    }
-}
-const deleteFavoriteSong = (songNo) => {
-    return {
-        type: DEL_FAV,
-        payload: songNo
-    }
-}
+const initState = createAction(INIT_STATE);
+const changeKeyword = createAction(SEARCH);
+const changeBrandFilter = createAction(BRAND_FILTER);
+const changeTypeFilter = createAction(SONG_FILTER);
+const addFavoriteSong = createAction(ADD_FAV);
+const deleteFavoriteSong = createAction(DEL_FAV);
 
 export const actionCreators = {
     changeKeyword,

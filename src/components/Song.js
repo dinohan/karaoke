@@ -28,21 +28,20 @@ function Song({ song, favSongs, addFavoriteSong, deleteFavoriteSong }) {
 
     return (<div className='song'>
         <div className='song-upper'>
-            <div className='song-index'>
+            <button className='song-index' onClick={handleClick}
+                style={{ cursor: 'pointer' }}>
                 {isFavorite() ? (
                     <AiFillStar
-                        onClick={handleClick}
-                        size='1.8em'
+                        size='2.2em'
                         className='fav-button'
                     />
                 ) : (
                         <AiOutlineStar
-                            onClick={handleClick}
-                            size='1.8em'
+                            size='2.2em'
                             className='fav-button'
                         />
                     )}
-            </div>
+            </button>
             <div className='song-title'>
                 {song.title}
             </div>

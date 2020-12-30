@@ -1,10 +1,11 @@
+import { createReducer } from '@reduxjs/toolkit';
 import {
+    INIT_STATE,
     SEARCH,
     BRAND_FILTER,
     SONG_FILTER,
     ADD_FAV,
-    DEL_FAV,
-    INIT_STATE
+    DEL_FAV
 } from '../actions/ActionTypes';
 
 const initialState = {
@@ -14,30 +15,24 @@ const initialState = {
     favSongs: [],
 };
 
-const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case SEARCH:
-            return { ...state, keyword: action.payload };
-        case BRAND_FILTER:
-            return { ...state, brandFilter: action.payload };
-        case SONG_FILTER:
-            return { ...state, typeFilter: action.payload };
-        case ADD_FAV:
-            let newSongs = state.favSongs.filter(song => song.no !== action.payload.no);
-            newSongs.push(action.payload);
-            return { ...state, favSongs: newSongs }
-        case DEL_FAV:
-            return {
-                ...state,
-                favSongs: state.favSongs.filter(song =>
-                    song.no !== action.payload
-                )
-            }
-        case INIT_STATE:
-            return { ...action.payload }
-        default:
-            return state;
+const reducer = createReducer(initialState, {
+    [INIT_STATE]: (state, action) => action.payload,
+    [SEARCH]: (state, action) => { return { ...state, keyword: action.payload }; },
+    [BRAND_FILTER]: (state, action) => { return { ...state, brandFilter: action.payload }; },
+    [SONG_FILTER]: (state, action) => { return { ...state, typeFilter: action.payload }; },
+    [ADD_FAV]: (state, action) => {
+        let newSongs = state.favSongs.filter(song => song.no !== action.payload.no);
+        newSongs.push(action.payload);
+        return { ...state, favSongs: newSongs }
+    },
+    [DEL_FAV]: (state, action) => {
+        return {
+            ...state,
+            favSongs: state.favSongs.filter(song =>
+                song.no !== action.payload
+            )
+        }
     }
-}
+})
 
 export default reducer;
