@@ -6,8 +6,9 @@ import { actionCreators } from '../actions';
 import './Song.css';
 
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { BiMessageSquareDetail } from 'react-icons/bi';
 
-function Song({ song, favSongs, addFavoriteSong, deleteFavoriteSong }) {
+function Song({ song, favSongs, addFavoriteSong, deleteFavoriteSong, openDetail }) {
     function isFavorite() {
         for (let favSong of favSongs) {
             if (favSong.no === song.no)
@@ -16,7 +17,7 @@ function Song({ song, favSongs, addFavoriteSong, deleteFavoriteSong }) {
         return false;
     }
 
-    function handleClick() {
+    function favClick() {
         if (isFavorite()) {
             const message = `'${song.title}'을(를) 즐겨찾기에서 삭제할까요?`;
             if (window.confirm(message))
@@ -26,22 +27,27 @@ function Song({ song, favSongs, addFavoriteSong, deleteFavoriteSong }) {
             addFavoriteSong(song);
     }
 
+    function detailClick() {
+        console.log('test');
+        openDetail(song);
+    }
+
     return (<div className='song'>
-        <div className='song-upper'>
-            <button className='song-index' onClick={handleClick}
-                style={{ cursor: 'pointer' }}>
-                {isFavorite() ? (
-                    <AiFillStar
+        <button className='song-index' onClick={favClick}
+            style={{ cursor: 'pointer' }}>
+            {isFavorite() ? (
+                <AiFillStar
+                    size='2.2em'
+                    className='fav-button'
+                />
+            ) : (
+                    <AiOutlineStar
                         size='2.2em'
                         className='fav-button'
                     />
-                ) : (
-                        <AiOutlineStar
-                            size='2.2em'
-                            className='fav-button'
-                        />
-                    )}
-            </button>
+                )}
+        </button>
+        <div className='song-upper'>
             <div className='song-title'>
                 {song.title}
             </div>
@@ -53,7 +59,9 @@ function Song({ song, favSongs, addFavoriteSong, deleteFavoriteSong }) {
             <div className='song-singer'>
                 {song.singer}
             </div>
-            <div className='song-no'>
+            <div className='detail-button' onClick={detailClick}
+                style={{ cursor: 'pointer' }}>
+                <BiMessageSquareDetail size='1.4em' />
             </div>
         </div>
     </div >)
@@ -70,7 +78,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         addFavoriteSong: (text) => dispatch(actionCreators.addFavoriteSong(text)),
-        deleteFavoriteSong: (text) => dispatch(actionCreators.deleteFavoriteSong(text))
+        deleteFavoriteSong: (text) => dispatch(actionCreators.deleteFavoriteSong(text)),
+        openDetail: (song) => dispatch(actionCreators.openDetail(song))
     };
 }
 

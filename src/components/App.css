@@ -12,7 +12,6 @@ body{
     background-color: #232839;
 }
 
-
 #home {
     margin-top: 10px;
     text-align: center;
@@ -34,3 +33,7 @@ a:hover {
 }*/
 
 /*  */
+
+#detail-view {
+    z-index: 1;
+}

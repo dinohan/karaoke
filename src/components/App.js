@@ -8,6 +8,7 @@ import Home from "../routes/Home";
 import Search from "../routes/Search";
 import Favorite from "../routes/Favorite";
 import './App.css'
+import Detail from './Detail';
 
 function App({ state, initState }) {
 
@@ -25,12 +26,22 @@ function App({ state, initState }) {
   }, [state]);
 
   return (
-    <Router>
-      <Navigation />
-      <Route path="/" exact={true} component={Home} />
-      <Route path="/search" component={Search} />
-      <Route path="/favorite" exact={true} component={Favorite} />
-    </Router>
+    <>
+      <Router>
+        {
+          state.detailOpened ? (<div>
+            <Detail id="detail-view" />
+          </div>) : (<div>
+
+          </div>)
+        }
+        <Navigation />
+        <Route path="/" exact={true} component={Home} />
+        <Route path="/search" component={Search} />
+        <Route path="/favorite" exact={true} component={Favorite} />
+      </Router>
+
+    </>
   );
 }
 

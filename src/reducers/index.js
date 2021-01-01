@@ -5,7 +5,9 @@ import {
     BRAND_FILTER,
     SONG_FILTER,
     ADD_FAV,
-    DEL_FAV
+    DEL_FAV,
+    OPEN_DETAIL,
+    CLOSE_DETAIL
 } from '../actions/ActionTypes';
 
 const initialState = {
@@ -13,6 +15,8 @@ const initialState = {
     brandFilter: 0,
     typeFilter: 0,
     favSongs: [],
+    detailOpened: false,
+    detailSong: {}
 };
 
 const reducer = createReducer(initialState, {
@@ -32,6 +36,12 @@ const reducer = createReducer(initialState, {
                 song.no !== action.payload
             )
         }
+    },
+    [OPEN_DETAIL]: (state, action) => {
+        return { ...state, detailOpened: true, detailSong: action.payload }
+    },
+    [CLOSE_DETAIL]: (state, action) => {
+        return { ...state, detailOpened: false, detailSong: {} }
     }
 })
 

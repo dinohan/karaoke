@@ -41,11 +41,11 @@ div {
 
 .song-title {
     width: auto;
-    max-width: 70%;
+    max-width: 66%;
     font-weight: 500;
     margin-bottom: 0px;
 
-    margin-left: 30px;
+    margin-left: 40px;
 
     white-space: nowrap;
     overflow: auto;
@@ -57,8 +57,10 @@ div {
 }
 
 
-/* .song-lower {
-} */
+.song-lower {
+    margin-top: 8px;
+    margin-bottom: 5px;
+}
 
 .song-lower > div {
     display: inline-block;
@@ -79,6 +81,15 @@ div {
     white-space: nowrap;
     overflow: auto;
 }
+
+
+.detail-button {
+    float: right;
+    text-align: right;
+    bottom: 2px;
+    border: white 1px solid;
+}
+
 
 .song-index {
     margin: 0px;
