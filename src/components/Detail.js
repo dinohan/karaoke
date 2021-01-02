@@ -39,7 +39,7 @@ function Detail({ detailOpened, detailSong, closeDetail }) {
     }, []);
 
     function copy() {
-        addToast('Coppied!', {
+        addToast('Copied!', {
             appearance: 'success',
             autoDismiss: true,
         })
