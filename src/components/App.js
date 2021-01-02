@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { HashRouter as Router, Route } from "react-router-dom";
 import { connect } from 'react-redux';
+import { ToastProvider } from 'react-toast-notifications';
 
 import { actionCreators } from '../actions';
 import Navigation from "./Navigation";
@@ -26,7 +27,12 @@ function App({ state, initState }) {
   }, [state]);
 
   return (
-    <>
+    <ToastProvider
+      autoDismiss
+      autoDismissTimeout={2000}
+      /* components={{ Toast: Snack }} */
+      placement="bottom-center"
+    >
       <Router>
         {
           state.detailOpened ? (<div>
@@ -40,8 +46,7 @@ function App({ state, initState }) {
         <Route path="/search" component={Search} />
         <Route path="/favorite" exact={true} component={Favorite} />
       </Router>
-
-    </>
+    </ToastProvider >
   );
 }
 

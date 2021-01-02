@@ -28,7 +28,6 @@ function Song({ song, favSongs, addFavoriteSong, deleteFavoriteSong, openDetail 
     }
 
     function detailClick() {
-        console.log('test');
         openDetail(song);
     }
 
