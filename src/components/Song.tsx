@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { actionCreators } from '../actions';
@@ -7,8 +6,18 @@ import './Song.css';
 
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { BiMessageSquareDetail } from 'react-icons/bi';
+import { SongType, State } from '../Interface';
 
-function Song({ song, favSongs, addFavoriteSong, deleteFavoriteSong, openDetail }) {
+interface SongProps {
+    key: number;
+    song: SongType;
+    favSongs: Array<SongType>;
+    addFavoriteSong: Function;
+    deleteFavoriteSong: Function;
+    openDetail: Function;
+}
+
+function Song({ song, favSongs, addFavoriteSong, deleteFavoriteSong, openDetail }: SongProps) {
     function isFavorite() {
         for (let favSong of favSongs) {
             if (favSong.no === song.no)
@@ -66,19 +75,17 @@ function Song({ song, favSongs, addFavoriteSong, deleteFavoriteSong, openDetail 
     </div >)
 }
 
-Song.propTypes = {
-    song: PropTypes.object.isRequired
-}
-
-function mapStateToProps(state) {
-    return { favSongs: state.favSongs }
-}
-
-function mapDispatchToProps(dispatch) {
+function mapStateToProps(state: State) {
     return {
-        addFavoriteSong: (text) => dispatch(actionCreators.addFavoriteSong(text)),
-        deleteFavoriteSong: (text) => dispatch(actionCreators.deleteFavoriteSong(text)),
-        openDetail: (song) => dispatch(actionCreators.openDetail(song))
+        favSongs: state.favSongs
+    }
+}
+
+function mapDispatchToProps(dispatch: Function) {
+    return {
+        addFavoriteSong: (song: SongType) => dispatch(actionCreators.addFavoriteSong(song)),
+        deleteFavoriteSong: (no: number) => dispatch(actionCreators.deleteFavoriteSong(no)),
+        openDetail: (song: SongType) => dispatch(actionCreators.openDetail(song))
     };
 }
 

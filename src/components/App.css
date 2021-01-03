@@ -19,21 +19,3 @@ body{
     font-size: 30px;
     font-weight: 900;
 }
-/* a:link {
-    color: white;
-    text-decoration: none;;
-}
-a:visited {
-    color: white;
-    text-decoration: none;
-}
-a:hover {
-    color: white;
-    text-decoration: none; 
-}*/
-
-/*  */
-
-#detail-view {
-    z-index: 1;
-}

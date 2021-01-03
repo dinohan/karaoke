@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
@@ -7,17 +7,23 @@ import { actionCreators } from '../actions';
 import "./Navigation.css";
 
 import { AiFillHome, AiFillStar } from 'react-icons/ai';
+import { State } from "../Interface";
 
-function Navigation({ state, changeKeyword }) {
+interface NavigationProps {
+    state: State;
+    changeKeyword: Function;
+}
+
+function Navigation({ state, changeKeyword }: NavigationProps) {
 
     const [text, setText] = useState(state.keyword);
 
-    function onChange(e) {
+    function onChange(e: ChangeEvent<HTMLInputElement>) {
         setText(e.target.value);
     }
 
     const history = useHistory();
-    function handleSubmit(e) {
+    function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         changeKeyword(text);
         const search = `key=${text}&brand=${(state.brandFilter === 0) ? 'tj' : 'ky'}&type=${state.typeFilter === 0 ? 'song' : 'singer'}`;
@@ -66,59 +72,14 @@ function Navigation({ state, changeKeyword }) {
     );
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
     return { state: state }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Function) {
     return {
-        changeKeyword: (text) => dispatch(actionCreators.changeKeyword(text))
+        changeKeyword: (keyword: string) => dispatch(actionCreators.changeKeyword(keyword))
     };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
-
-/*
-class Navigation extends React.Component {
-    state = {
-        path: '/home',
-        brand: 'tj',
-        type: 'song'
-    }
-    handleSubmit = (e) => {
-        const search = this.props.location.search;
-        const params = new URLSearchParams(search);
-        const brand = params.get('brand');
-        const type = params.get('type');
-        if (e.key === 'Enter') {
-            var link = '/search?key=' + e.target.value
-                + '&brand=' + (brand === null ? 'tj' : brand)
-                + '&type=' + (type === null ? 'song' : type);
-            this.props.history.push(link);
-        }
-    }
-
-    render() {
-        return (
-            <div>
-                <div className="nav">
-                    <Link id="home-button" to="/">노래방 검색</Link>
-                </div>
-                <div>
-                    <form onSubmit={onSubmit}>
-                        <input
-                            id="search-box"
-                            type="search"
-                            placeholder="검색어를 입력하세요"
-                        />
-                        <button>검색</button>
-                    </form>
-                </div>
-            </div>
-        );
-    }
-}
-
-export default withRouter(Navigation);
-
-*/

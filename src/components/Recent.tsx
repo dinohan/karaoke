@@ -2,8 +2,14 @@ import React from 'react';
 import Song from './Song';
 import PropTypes from 'prop-types';
 import './Recent.css';
+import { SongType } from '../Interface';
 
-function Recent({ songs, brand }) {
+interface RecentProps {
+    songs: Array<SongType>;
+    brand: string;
+}
+
+function Recent({ songs, brand }: RecentProps) {
     return <div className='recent'>
         <h2 className='brand'>{brand} 최신곡</h2>
         {

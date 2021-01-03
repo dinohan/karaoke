@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 
 import { actionCreators } from '../actions';
 import Song from '../components/Song';
+import { SongType, State } from '../Interface';
 import './Favorite.css';
 
-function Favorite({ state, deleteFavoriteSong }) {
+interface FavoriteProps {
+    favSongs: Array<SongType>;
+}
+
+function Favorite({ favSongs }: FavoriteProps) {
     return (<div id="favorites">
         <h1 id="favorite-title">즐겨찾기</h1>
-        {state.favSongs.map(song => {
+        {favSongs.map((song: SongType) => {
             return <Song
                 key={song.no}
                 song={song}
@@ -17,13 +22,13 @@ function Favorite({ state, deleteFavoriteSong }) {
     </div>)
 }
 
-function mapStateToProps(state) {
-    return { state }
+function mapStateToProps(state: State) {
+    return { favSongs: state.favSongs }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Function) {
     return {
-        deleteFavoriteSong: (text) => dispatch(actionCreators.deleteFavoriteSong(text))
+        deleteFavoriteSong: (no: number) => dispatch(actionCreators.deleteFavoriteSong(no))
     };
 }
 

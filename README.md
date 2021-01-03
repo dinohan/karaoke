@@ -53,6 +53,6 @@ Detail 화면 추가
 
 > 곡 상세정보를 확인할 수 있는 팝업 화면을 만들었다. 이 화면에 앞으로 다양한 내용이 들어갈 수 있을 것이다.
 > 
-> 제목 복사 버튼을 눌렀을 때 toast 팝업을 띄우기 위해 외부 라이브러리를 활용했다.
+> 제목 복사 버튼을 눌렀을 때 toast 팝업을 띄우기 위해 [외부 라이브러리](https://jossmac.github.io/react-toast-notifications/)를 활용했다.
 >
 > redux store에 항목 2가지가 추가되었다. `detailOpened: bool`와 `detailSong: object`

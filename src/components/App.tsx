@@ -10,8 +10,14 @@ import Search from "../routes/Search";
 import Favorite from "../routes/Favorite";
 import './App.css'
 import Detail from './Detail';
+import { State } from '../Interface';
 
-function App({ state, initState }) {
+type AppProps = {
+  state: State;
+  initState: Function;
+}
+
+function App({ state, initState }: AppProps) {
 
   useEffect(() => {
     const localState = localStorage.getItem('state');
@@ -36,7 +42,7 @@ function App({ state, initState }) {
       <Router>
         {
           state.detailOpened ? (<div>
-            <Detail id="detail-view" />
+            <Detail />
           </div>) : (<div>
 
           </div>)
@@ -50,14 +56,14 @@ function App({ state, initState }) {
   );
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
   return { state: state }
 }
 
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Function) {
   return {
-    initState: (localState) => dispatch(actionCreators.initState(localState))
+    initState: (localState: State) => dispatch(actionCreators.initState(localState))
   };
 }
 

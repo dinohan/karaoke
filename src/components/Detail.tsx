@@ -12,22 +12,30 @@ import { FiCopy } from 'react-icons/fi';
 import tjImg from '../assets/tj.png';
 import kyImg from '../assets/ky.png';
 import './Detail.css';
+import { SongType, State } from '../Interface';
 
-function Detail({ detailOpened, detailSong, closeDetail }) {
-    const modal = useRef();
-    const background = useRef();
+interface DetailProps {
+    detailOpened: boolean;
+    detailSong: SongType;
+    closeDetail: Function;
+}
+
+function Detail({ detailOpened, detailSong, closeDetail }: DetailProps) {
+    const modal = useRef<HTMLDivElement>(null);
+    const background = useRef<HTMLDivElement>(null);
 
     const { addToast } = useToasts()
 
 
-    const handleClickOutside = ({ target }) => {
+    const handleClickOutside = ({ target }: MouseEvent) => {
 
-        if (detailOpened &&
-            !modal.current.contains(target) &&
-            background.current.contains(target)) {
-            console.log('close');
-            closeDetail();
-        }
+        if (modal.current && background.current)
+            if (detailOpened &&
+                !modal.current.contains(target as Node) &&
+                background.current.contains(target as Node)) {
+                console.log('close');
+                closeDetail();
+            }
     };
 
     useEffect(() => {
@@ -45,10 +53,14 @@ function Detail({ detailOpened, detailSong, closeDetail }) {
         })
     }
 
+    function close() {
+        closeDetail();
+    }
+
 
     return (<div id="detail" ref={background} >
         <div id="modal" ref={modal}>
-            <div id='close-button' onClick={closeDetail}>
+            <div id='close-button' onClick={close}>
                 <GrFormClose size='2em' />
             </div>
             <div id="modal-top">
@@ -77,14 +89,14 @@ function Detail({ detailOpened, detailSong, closeDetail }) {
     </div >)
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
     return {
         detailOpened: state.detailOpened,
         detailSong: state.detailSong
     }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Function) {
     return {
         closeDetail: () => dispatch(actionCreators.closeDetail())
     };

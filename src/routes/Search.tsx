@@ -7,7 +7,13 @@ import { actionCreators } from '../actions'
 import Selector from '../components/Selector';
 import Result from '../components/Result';
 
-function Search({ changeKeyword, changeBrandFilter, changeTypeFilter }) {
+interface SearchProps {
+    changeKeyword: Function;
+    changeBrandFilter: Function;
+    changeTypeFilter: Function;
+}
+
+function Search({ changeKeyword, changeBrandFilter, changeTypeFilter }: SearchProps) {
     const location = useLocation();
     const searchURI = decodeURI(location.search);
     const query = queryString.parse(searchURI);
@@ -23,11 +29,11 @@ function Search({ changeKeyword, changeBrandFilter, changeTypeFilter }) {
     </div>)
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Function) {
     return {
-        changeKeyword: (text) => dispatch(actionCreators.changeKeyword(text)),
-        changeBrandFilter: (id) => dispatch(actionCreators.changeBrandFilter(id)),
-        changeTypeFilter: (id) => dispatch(actionCreators.changeTypeFilter(id))
+        changeKeyword: (keyword: string) => dispatch(actionCreators.changeKeyword(keyword)),
+        changeBrandFilter: (id: number) => dispatch(actionCreators.changeBrandFilter(id)),
+        changeTypeFilter: (id: number) => dispatch(actionCreators.changeTypeFilter(id))
     };
 }
 

@@ -10,6 +10,8 @@ import {
     CLOSE_DETAIL
 } from '../actions/ActionTypes';
 
+import { SongType, Action } from '../Interface'
+
 const initialState = {
     keyword: '',
     brandFilter: 0,
@@ -19,20 +21,22 @@ const initialState = {
     detailSong: {}
 };
 
+
 const reducer = createReducer(initialState, {
     [INIT_STATE]: (state, action) => action.payload,
     [SEARCH]: (state, action) => { return { ...state, keyword: action.payload }; },
     [BRAND_FILTER]: (state, action) => { return { ...state, brandFilter: action.payload }; },
     [SONG_FILTER]: (state, action) => { return { ...state, typeFilter: action.payload }; },
-    [ADD_FAV]: (state, action) => {
-        let newSongs = state.favSongs.filter(song => song.no !== action.payload.no);
+    [ADD_FAV]: (state, action: Action) => {
+        let newSongs: any;
+        newSongs = state.favSongs.filter((song: SongType) => song.no !== action.payload.no);
         newSongs.push(action.payload);
         return { ...state, favSongs: newSongs }
     },
     [DEL_FAV]: (state, action) => {
         return {
             ...state,
-            favSongs: state.favSongs.filter(song =>
+            favSongs: state.favSongs.filter((song: SongType) =>
                 song.no !== action.payload
             )
         }
