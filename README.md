@@ -61,4 +61,8 @@ Detail 화면 추가
 
 **Typescript!!**
 
+그리고 유튜브
+
 > Typescript를 모든 src 파일에 적용했다.
+>
+> Youtue API를 활용해 Detail 화면에서 곡을 바로 들어볼 수 있다. 간단하게 `title + singer` 검색 결과의 첫 번째 영상을 가져오는 방식이다.
