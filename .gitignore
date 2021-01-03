@@ -1,8 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-/src/config.js
-/src/config.tsx
-
 .eslintcache
 .vscode
 # dependencies
@@ -14,7 +11,7 @@
 /coverage
 
 # production
-#/build
+/build
 
 # misc
 .DS_Store
