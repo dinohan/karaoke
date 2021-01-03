@@ -47,7 +47,7 @@ react 공부를 위한 프로젝트입니다.
 >
 > 이제 chrome에서 Redux dev tool 을 사용할 수 있다.
 
-### 2021.01.01
+### 2021.01.01 ~ 01.02
 
 Detail 화면 추가
 
@@ -56,3 +56,9 @@ Detail 화면 추가
 > 제목 복사 버튼을 눌렀을 때 toast 팝업을 띄우기 위해 [외부 라이브러리](https://jossmac.github.io/react-toast-notifications/)를 활용했다.
 >
 > redux store에 항목 2가지가 추가되었다. `detailOpened: bool`와 `detailSong: object`
+
+### 2021.01.03
+
+**Typescript!!**
+
+> Typescript를 모든 src 파일에 적용했다.
