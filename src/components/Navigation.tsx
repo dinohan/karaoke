@@ -33,7 +33,6 @@ function Navigation({ state, changeKeyword }: NavigationProps) {
         });
     }
     function clickHome() {
-        console.log(history.location.pathname);
         if (history.location.pathname)
             window.scrollTo(0, 0);
     }

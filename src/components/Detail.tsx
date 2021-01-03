@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import { useToasts } from 'react-toast-notifications'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+
+import YouTube from 'react-youtube';
 //import axios from 'axios';
 
-//import { API_KEY } from '../config';
+import { API_KEY } from '../config';
 import { actionCreators } from '../actions'
 
 import { GrFormClose } from 'react-icons/gr';
@@ -13,6 +15,7 @@ import tjImg from '../assets/tj.png';
 import kyImg from '../assets/ky.png';
 import './Detail.css';
 import { SongType, State } from '../Interface';
+import axios from 'axios';
 
 interface DetailProps {
     detailOpened: boolean;
@@ -33,7 +36,6 @@ function Detail({ detailOpened, detailSong, closeDetail }: DetailProps) {
             if (detailOpened &&
                 !modal.current.contains(target as Node) &&
                 background.current.contains(target as Node)) {
-                console.log('close');
                 closeDetail();
             }
     };
@@ -47,7 +49,7 @@ function Detail({ detailOpened, detailSong, closeDetail }: DetailProps) {
     }, []);
 
     function copy() {
-        addToast('Copied!', {
+        addToast(`Copied '${detailSong.title}' to clipboard`, {
             appearance: 'success',
             autoDismiss: true,
         })
@@ -57,6 +59,17 @@ function Detail({ detailOpened, detailSong, closeDetail }: DetailProps) {
         closeDetail();
     }
 
+    const [youtbeId, setYoutubeId] = useState('');
+    useEffect(() => {
+        async function getYoutubeId() {
+            const youtubeKeyword = `${detailSong.title}%20${detailSong.singer}`;
+            const youtubeLink = `https://www.googleapis.com/youtube/v3/search?part=id&regionCode=KR&q=${youtubeKeyword}&key=${API_KEY}`;
+            const { data: { items } } = await axios.get(youtubeLink);
+            setYoutubeId(items[0].id.videoId);
+        }
+        getYoutubeId();
+        // eslint-disable-next-line
+    }, [])
 
     return (<div id="detail" ref={background} >
         <div id="modal" ref={modal}>
@@ -76,7 +89,6 @@ function Detail({ detailOpened, detailSong, closeDetail }: DetailProps) {
                     <h2 id='detail-title'>{detailSong.title}</h2>
                     <CopyToClipboard text={detailSong.title}>
                         <FiCopy
-
                             id='copy-button'
                             size='1.4em'
                             onClick={copy} />
@@ -84,6 +96,13 @@ function Detail({ detailOpened, detailSong, closeDetail }: DetailProps) {
                 </div>
                 <div>{detailSong.singer}</div>
                 <div id='detail-release'>{detailSong.release}</div>
+                <YouTube
+                    videoId={youtbeId}
+                    opts={{
+                        width: '100%',
+                        height: '200px'
+                    }}
+                />
             </div>
         </div>
     </div >)
