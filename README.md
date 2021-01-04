@@ -2,7 +2,7 @@
 
 react 공부를 위한 프로젝트입니다.
 
-## [사용해보기](https://dino-is-singing.netlify.app/)
+## [사용해보기](https://singing.netlify.app/#/)
 
 ## Update log
 
