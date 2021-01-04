@@ -96,14 +96,15 @@ function Detail({ detailOpened, detailSong, closeDetail }: DetailProps) {
                 </div>
                 <div>{detailSong.singer}</div>
                 <div id='detail-release'>{detailSong.release}</div>
-
-                <YouTube
-                    videoId={youtbeId}
-                    opts={{
-                        width: '100%',
-                        height: '200px'
-                    }}
-                />
+                <div id='detail-video'>
+                    <YouTube
+                        videoId={youtbeId}
+                        opts={{
+                            width: '100%',
+                            height: '100%'
+                        }}
+                    />
+                </div>
             </div>
         </div>
     </div >)
