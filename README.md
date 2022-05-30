@@ -15,7 +15,7 @@ react 공부를 위한 프로젝트입니다.
 >
 > Router를 활용하여 메인(최신곡)과 검색 화면을 오간다.
 > 
-> hisotry.push()를 이용하여 url query를 추가한다.
+> history.push()를 이용하여 url query를 추가한다.
 
 ### 2020.12.29
 
